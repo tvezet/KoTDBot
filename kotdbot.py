@@ -4,6 +4,7 @@ import discord
 import numpy as np
 from joblib import dump, load
 import sys
+import os
 import math
 
 
@@ -44,7 +45,10 @@ def bonus(text):
 	dump(val,'bonus.joblib')
 	return "Bonus set to " + str(val) +"."
 
-TOKEN = sys.argv[1]
+if len(sys.argv) > 1:
+	TOKEN = sys.argv[1]
+else:
+	TOKEN = os.environ["ACCESS_TOKEN"]
 
 client = discord.Client()	
 @client.event
